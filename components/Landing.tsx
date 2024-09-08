@@ -2,6 +2,8 @@ import React from 'react'
 import { ArrowRight } from 'lucide-react'
 import { data } from '@/lib/data'
 import BlurFade from './magicui/blur-fade'
+import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from './ui/carousel'
+import { Card, CardContent } from './ui/card'
 
 const Landing = () => {
     return (
@@ -35,16 +37,33 @@ const Landing = () => {
                     </div>
                 ))}
             </div>
-            <div className='text-center mt-10 mx-auto'>
-                <h1 className=' font-extra-bold text-3xl py-3 text-red-900'>Start exploring</h1>
-                <div className='mx-10 flex flex-wrap gap-4'>
-                    <div className='size-[400px] bg-slate-400 rounded-md '>
-                        IMG
-                    </div>
-                    <div className='size-[400px] bg-slate-400 rounded-md '>
-                        IMG-2
-                    </div>
-                </div>
+            <div className='mt-20'>
+                <h1 className='text-center font-extra-bold text-3xl py-3 text-red-900'>Start exploring</h1>
+                <Carousel className='w-full max-w-xs'>
+                    <CarouselContent>
+
+                        <CarouselItem>
+                            <div>
+                                <Card>
+                                    <CardContent className='flex items-center justify-center aspect-square p-6'>
+                                        <span className="text-4xl font-semibold">1</span>
+                                    </CardContent>
+                                </Card>
+                            </div>
+                        </CarouselItem>
+                        <CarouselItem>
+                            <div>
+                                <Card>
+                                    <CardContent className='flex items-center justify-center aspect-square p-6'>
+                                        <span className="text-4xl font-semibold">2</span>
+                                    </CardContent>
+                                </Card>
+                            </div>
+                        </CarouselItem>
+                    </CarouselContent>
+                    <CarouselPrevious />
+                    <CarouselNext />
+                </Carousel>
             </div>
         </div>
     )

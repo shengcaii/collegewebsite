@@ -3,8 +3,9 @@ import { HamburgerMenuIcon } from "@radix-ui/react-icons"
 import { Sheet, SheetContent, SheetDescription, SheetFooter, SheetHeader, SheetTitle, SheetTrigger } from "@/components/ui/sheet"
 import { data } from '@/lib/data'
 import BlurFade from "./magicui/blur-fade"
-import { Dialog, DialogContent, DialogFooter, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog"
-import { Input } from "postcss"
+import { Dialog, DialogContent, DialogFooter, DialogHeader, DialogTitle, DialogTrigger, DialogDescription } from "@/components/ui/dialog"
+import { Input } from "@/components/ui/input"
+import { Button } from "./ui/button"
 
 const NavigationBar = () => {
 
@@ -15,24 +16,31 @@ const NavigationBar = () => {
                     <button>
                         <SchoolIcon />
                     </button>
-                    <div className="flex items-center gap-4">
+                    <div className="flex items-center gap-4 justify-center">
                         <Dialog>
                             <DialogTrigger>
                                 <Search />
                             </DialogTrigger>
-                            <DialogContent className="">
+                            <DialogContent className="mx-5 ">
                                 <DialogHeader>
-                                    <DialogTitle>Edit profile</DialogTitle>
+                                    <DialogTitle>Search</DialogTitle>
+                                    <DialogDescription>Search through all of the memories</DialogDescription>
                                 </DialogHeader>
+                                <div className="flex items-center justify-center gap-5">
+                                    <Input className="w-2/3 border-slate-600 rounded-2xl" placeholder='Search everything...' />
+                                    <Button className="rounded-full">Search</Button>
+                                </div>
+                                <DialogFooter>This feature will implement soon.</DialogFooter>
                             </DialogContent>
+
                         </Dialog>
                         <Sheet>
                             <SheetTrigger><HamburgerMenuIcon className="size-8" /></SheetTrigger>
-                            <SheetContent side={'top'} className="bg-slate-300 h-[600px] lg:max-w-3xl lg:mx-auto">
+                            <SheetContent side={'right'} className="bg-slate-300 h-screen w-[350px]  md:max-w-3xl md:mx-auto">
                                 <SheetHeader>
                                     <SheetTitle>NYRDDC</SheetTitle>
                                     <SheetDescription>
-                                        This action cannot be undone. This will permanently delete your account and remove your data from our servers.
+                                        Nationalities Youth Resource Development Degree College
                                     </SheetDescription>
 
                                 </SheetHeader>
@@ -42,7 +50,7 @@ const NavigationBar = () => {
                                             {item}
                                         </BlurFade>)}
                                 </div>
-                                <SheetFooter>Thank you</SheetFooter>
+                                <SheetFooter className="mt-20">Thank you</SheetFooter>
                             </SheetContent>
                         </Sheet>
                     </div>
