@@ -7,8 +7,9 @@ import { Card, CardContent } from './ui/card'
 
 const Landing = () => {
     return (
-        <div className='font-serif'>
-            <div className='text-center mt-40'>
+        <div className=''>
+            <div className="text-center mt-32"
+            >
                 <BlurFade duration={1} className='text-3xl font-black tracking-widest h-20'>Welcome to NYRDDC</BlurFade>
                 <BlurFade duration={1 * 3} className='font-hairline text-lg'>
                     Where world-class faculty, innovative research, and dynamic students come together to advance education and foster change in the world.
@@ -39,7 +40,7 @@ const Landing = () => {
             </div>
             <div className='mt-20'>
                 <h1 className='text-center font-extra-bold text-3xl py-3 text-red-900'>Start exploring</h1>
-                <Carousel className='w-full max-w-xs'>
+                <Carousel className='w-full xs:max-w-[200px] md:max-w-xs mx-auto '>
                     <CarouselContent>
 
                         <CarouselItem>

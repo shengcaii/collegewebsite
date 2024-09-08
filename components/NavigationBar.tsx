@@ -6,12 +6,13 @@ import BlurFade from "./magicui/blur-fade"
 import { Dialog, DialogContent, DialogFooter, DialogHeader, DialogTitle, DialogTrigger, DialogDescription } from "@/components/ui/dialog"
 import { Input } from "@/components/ui/input"
 import { Button } from "./ui/button"
+import Link from "next/link"
 
 const NavigationBar = () => {
 
     return (
         <>
-            <nav className="sticky top-0 w-full z-20 start-0 backdrop-blur-sm  bg-transparent rounded-lg p-3">
+            <nav className="sticky top-1 w-full z-20 start-0 backdrop-blur-sm  bg-transparent rounded-lg p-3 ring-1 ring-slate-300">
                 <div className="flex items-center justify-between ">
                     <button>
                         <SchoolIcon />
@@ -21,7 +22,7 @@ const NavigationBar = () => {
                             <DialogTrigger>
                                 <Search />
                             </DialogTrigger>
-                            <DialogContent className="mx-5 ">
+                            <DialogContent className="overflow-clip">
                                 <DialogHeader>
                                     <DialogTitle>Search</DialogTitle>
                                     <DialogDescription>Search through all of the memories</DialogDescription>
@@ -36,21 +37,24 @@ const NavigationBar = () => {
                         </Dialog>
                         <Sheet>
                             <SheetTrigger><HamburgerMenuIcon className="size-8" /></SheetTrigger>
-                            <SheetContent side={'right'} className="bg-slate-300 h-screen w-[350px]  md:max-w-3xl md:mx-auto">
+                            <SheetContent side={'right'} className="bg-slate-300 h-screen w-[350px] xs:max-w-44  md:max-w-3xl md:mx-auto">
                                 <SheetHeader>
                                     <SheetTitle>NYRDDC</SheetTitle>
-                                    <SheetDescription>
-                                        Nationalities Youth Resource Development Degree College
-                                    </SheetDescription>
-
                                 </SheetHeader>
-                                <div className="space-y-2">
+                                <div className="space-y-2 mt-10">
                                     {data.navItems.map((item, i) =>
-                                        <BlurFade key={item} duration={i / 10 + 0.5} className="transition delay-150 hover:underline text-2xl py-2 ">
+                                        <BlurFade key={i} duration={i / 10 + 0.5} className="transition delay-150 hover:underline text-xl ">
                                             {item}
                                         </BlurFade>)}
                                 </div>
-                                <SheetFooter className="mt-20">Thank you</SheetFooter>
+                                <SheetFooter className="mt-10">
+                                    <Link href={'./about'}>
+                                        <button className="text-left hover:underline text-xl">
+                                            About
+                                        </button>
+                                    </Link>
+
+                                </SheetFooter>
                             </SheetContent>
                         </Sheet>
                     </div>
