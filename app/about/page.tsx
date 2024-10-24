@@ -1,8 +1,16 @@
-import React from 'react'
+"use client"
+import MovingCursor from "@/components/MovingCursor"
+import Header from "@/components/Header"
+import { useRef } from "react"
+
 
 const About = () => {
+    const stickyElement = useRef(null)
     return (
-        <div>About</div>
+        <>
+            <Header ref={stickyElement}/>
+            <MovingCursor stickyElement={stickyElement} />
+        </>
     )
 }
 

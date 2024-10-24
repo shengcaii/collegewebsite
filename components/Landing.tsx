@@ -47,7 +47,12 @@ const Landing = () => {
                             <div>
                                 <Card>
                                     <CardContent className='flex items-center justify-center aspect-square p-6'>
-                                        <span className="text-4xl font-semibold">1</span>
+                                        <span className="text-4xl font-semibold">
+                                            <img
+                                                src='background.jpg'
+                                                alt='graduation png'
+                                            />
+                                        </span>
                                     </CardContent>
                                 </Card>
                             </div>
@@ -56,7 +61,12 @@ const Landing = () => {
                             <div>
                                 <Card>
                                     <CardContent className='flex items-center justify-center aspect-square p-6'>
-                                        <span className="text-4xl font-semibold">2</span>
+                                        <span className="text-4xl font-semibold">
+                                            <img
+                                                src='download.png'
+                                                alt='icon'
+                                            />
+                                        </span>
                                     </CardContent>
                                 </Card>
                             </div>

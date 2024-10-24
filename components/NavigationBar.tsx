@@ -1,69 +1,75 @@
-import { SchoolIcon, Search } from "lucide-react"
-import { HamburgerMenuIcon } from "@radix-ui/react-icons"
-import { Sheet, SheetContent, SheetDescription, SheetFooter, SheetHeader, SheetTitle, SheetTrigger } from "@/components/ui/sheet"
-import { data } from '@/lib/data'
-import BlurFade from "./magicui/blur-fade"
-import { Dialog, DialogContent, DialogFooter, DialogHeader, DialogTitle, DialogTrigger, DialogDescription } from "@/components/ui/dialog"
-import { Input } from "@/components/ui/input"
-import { Button } from "./ui/button"
-import Link from "next/link"
+"use client"
+import { FC, ReactNode, SetStateAction, useRef, useState } from 'react';
+import { motion } from 'framer-motion';
+import Link from 'next/link';
+interface Position {
+    left: number | string;
+    width: number;
+    opacity: number;
+}
 
-const NavigationBar = () => {
+const NavigationBar: FC = () => {
+    const [position, setPosition] = useState<Position>({
+        left: 0,
+        width: 0,
+        opacity: 0
+    });
 
     return (
         <>
-            <nav className="sticky top-1 w-full z-20 start-0 backdrop-blur-sm  bg-transparent rounded-lg p-3 ring-1 ring-slate-300">
-                <div className="flex items-center justify-between ">
-                    <button>
-                        <SchoolIcon />
-                    </button>
-                    <div className="flex items-center gap-4 justify-center">
-                        <Dialog>
-                            <DialogTrigger>
-                                <Search />
-                            </DialogTrigger>
-                            <DialogContent className="overflow-clip">
-                                <DialogHeader>
-                                    <DialogTitle>Search</DialogTitle>
-                                    <DialogDescription>Search through all of the memories</DialogDescription>
-                                </DialogHeader>
-                                <div className="flex items-center justify-center gap-5">
-                                    <Input className="w-2/3 border-slate-600 rounded-2xl" placeholder='Search everything...' />
-                                    <Button className="rounded-full">Search</Button>
-                                </div>
-                                <DialogFooter>This feature will implement soon.</DialogFooter>
-                            </DialogContent>
-
-                        </Dialog>
-                        <Sheet>
-                            <SheetTrigger><HamburgerMenuIcon className="size-8" /></SheetTrigger>
-                            <SheetContent side={'right'} className="bg-slate-300 h-screen w-[350px] xs:max-w-44  md:max-w-3xl md:mx-auto">
-                                <SheetHeader>
-                                    <SheetTitle>NYRDDC</SheetTitle>
-                                </SheetHeader>
-                                <div className="space-y-2 mt-10">
-                                    {data.navItems.map((item, i) =>
-                                        <BlurFade key={i} duration={i / 10 + 0.5} className="transition delay-150 hover:underline text-xl ">
-                                            {item}
-                                        </BlurFade>)}
-                                </div>
-                                <SheetFooter className="mt-10">
-                                    <Link href={'./about'}>
-                                        <button className="text-left hover:underline text-xl">
-                                            About
-                                        </button>
-                                    </Link>
-
-                                </SheetFooter>
-                            </SheetContent>
-                        </Sheet>
-                    </div>
-                </div>
-            </nav>
-
+            <ul className='relative flex items-center justify-between px-1 py-1.5 border border-black bg-white rounded-full'
+            onMouseLeave={()=>{
+                setPosition((pre)=>({
+                    ...pre,
+                    opacity:0,
+                }))
+            }}
+            >
+                <Tab setPosition={setPosition}><Link href={'/'}>Home</Link></Tab>
+                <Tab setPosition={setPosition}><Link href={'/about'}>About</Link></Tab>
+                <Tab setPosition={setPosition}>Activity</Tab>
+                <Tab setPosition={setPosition}>Campus</Tab>
+                <Tab setPosition={setPosition}>Contact</Tab>
+                <Cursor position={position} />
+            </ul>
         </>
+    );
+};
 
-    )
+export default NavigationBar;
+
+interface TabProps {
+    setPosition: (value: SetStateAction<Position>) => void;
+    children: ReactNode;
 }
 
-export default NavigationBar
+const Tab: FC<TabProps> = ({ children, setPosition }) => {
+    const ref = useRef<HTMLLIElement | null>(null);
+    
+    return (
+        <li
+            ref={ref}
+            onMouseEnter={() => {
+                if (!ref.current) return;
+                const { width } = ref.current.getBoundingClientRect();
+                setPosition({
+                    width,
+                    left: ref.current.offsetLeft,
+                    opacity: 1
+                });
+            }}
+            className='cursor-pointer z-20 mix-blend-difference text-white px-2'>{children}</li>
+    );
+};
+
+interface CursorProps {
+    position: Position;
+}
+
+const Cursor: FC<CursorProps> = ({ position }) => {
+    return (
+        <motion.li
+            animate={{...position}}
+            className='bg-black w-20 h-8 z-0 absolute rounded-full' />
+    );
+};
