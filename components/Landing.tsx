@@ -9,7 +9,7 @@ const Home: React.FC = () => {
             <Menu/>
             {/* Hero Section */}
             <section
-                className="relative w-full h-screen text-white"
+                className="relative bg-no-repeat w-full h-screen text-white"
                 style={{ backgroundImage: "url('/background.jpg')" }}
             >
                 <div className="absolute inset-0 bg-black bg-opacity-50"></div>
