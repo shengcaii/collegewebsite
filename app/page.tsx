@@ -1,13 +1,12 @@
-import Footer from '@/components/Footer';
+import Events from '@/components/event';
 import Landing from '@/components/Landing';
-import NavigationBar from '@/components/NavigationBar'
 
 export default function Home() {
   return (
-    <main className="max-w-3xl px-2 sm:px-4 py-2 mx-auto">
-      <NavigationBar />
+    <main className="max-w-3xl mx-auto">
+      {/* <NavigationBar /> */}
       <Landing />
-      <Footer />
+      <Events />
     </main>
   );
 }
