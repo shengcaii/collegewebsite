@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import Link from 'next/link';
+import { Cross, Crosshair, CrosshairIcon, CrossIcon, LucideCross, LucideMenu, LucideX, MenuIcon } from 'lucide-react';
 
 const Menu: React.FC = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -22,7 +23,7 @@ const Menu: React.FC = () => {
         </div>
         <div className="md:hidden">
           <button onClick={toggleMenu} className="text-gray-700 focus:outline-none">
-            {isOpen ? '✖' : '☰'}
+            {isOpen ? <LucideX/> : <LucideMenu/>}
           </button>
         </div>
       </div>

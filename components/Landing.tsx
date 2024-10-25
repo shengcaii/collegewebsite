@@ -9,8 +9,11 @@ const Home: React.FC = () => {
             <Menu/>
             {/* Hero Section */}
             <section
-                className="relative bg-no-repeat w-full h-screen text-white"
-                style={{ backgroundImage: "url('/background.jpg')" }}
+                className="relative bg-center bg-cover bg-no-repeat w-full h-[60vh] md:h-[50vh] text-white"
+                style={{ 
+                    backgroundImage: "url('/background.jpg')",
+                    backgroundAttachment: 'fixed',
+                 }}
             >
                 <div className="absolute inset-0 bg-black bg-opacity-50"></div>
                 <motion.div
@@ -20,7 +23,7 @@ const Home: React.FC = () => {
                     transition={{ duration: 1.5 }}
                 >
                     <h1 className="text-6xl font-bold">Empowering Ethnic Youth</h1>
-                    <p className="text-lg text-center max-w-2xl">
+                    <p className="text-lg text-center max-w-2xl mix-blend-difference text-white">
                         Join us at the Nationalities Youth Resource Development Degree Colleges, where education, culture, and empowerment meet.
                     </p>
                     <motion.button
@@ -28,7 +31,7 @@ const Home: React.FC = () => {
                         whileHover={{ scale: 1.05 }}
                         whileTap={{ scale: 0.95 }}
                     >
-                        Get Started
+                       <a href="#start">Get Started</a>
                     </motion.button>
                 </motion.div>
             </section>
@@ -36,6 +39,7 @@ const Home: React.FC = () => {
             {/* About Section */}
             <section className="py-16 px-6 bg-white text-gray-800 text-center">
                 <motion.h2
+                id='start'
                     className="text-4xl font-bold mb-4"
                     initial={{ opacity: 0, y: 50 }}
                     animate={{ opacity: 1, y: 0 }}
@@ -131,7 +135,9 @@ const Home: React.FC = () => {
                     whileHover={{ scale: 1.05 }}
                     whileTap={{ scale: 0.95 }}
                 >
-                    Contact Us
+                    <a href="mailto:contact@nyrddc.edu?subject=Inquiry&body=Hello,%20I%20would%20like%20more%20information%20about...">
+                    Contact Us 
+                    </a>
                 </motion.button>
             </section>
         </div>
