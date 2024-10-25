@@ -1,20 +1,16 @@
 "use client"
 import { useState } from 'react';
 import { motion } from 'framer-motion';
+import {useForm, ValidationError} from '@formspree/react'
 
 const Contact: React.FC = () => {
   const [formData, setFormData] = useState({ name: '', email: '', message: '' });
-  const [isSubmitted, setIsSubmitted] = useState(false);
+  const [state, handleSubmit] = useForm(process.env.NEXT_PUBLIC_FORMSPREE_API!);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    // Here you would typically handle form submission
-    setIsSubmitted(true);
-  };
 
   return (
     <div className="min-h-screen bg-gray-100 flex flex-col items-center py-10">
@@ -36,7 +32,7 @@ const Contact: React.FC = () => {
           We would love to hear from you! Please fill out the form below.
         </motion.p>
 
-        {isSubmitted ? (
+        {state.succeeded ? (
           <motion.p
             className="text-lg text-green-500"
             initial={{ opacity: 0, y: 20 }}
@@ -65,6 +61,11 @@ const Contact: React.FC = () => {
               required
               className="border rounded-lg px-4 py-2 mb-4 w-full max-w-md"
             />
+            <ValidationError 
+            errors={state.errors}
+            prefix='Email'
+            field='email'
+            />
             <textarea
               name="message"
               placeholder="Message or Feedback"
@@ -75,6 +76,7 @@ const Contact: React.FC = () => {
             />
             <button
               type="submit"
+              disabled={state.submitting}
               className="bg-blue-600 text-white py-2 px-4 rounded-lg"
             >
               Send Message
